@@ -103,6 +103,36 @@
     <Filter Include="Shader">
       <UniqueIdentifier>{de3f9224-098b-4c48-8260-fa6a820477ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Project\GameObject\Character">
+      <UniqueIdentifier>{44e03747-9855-434e-bb07-a146195664ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Project\GameObject\Character">
+      <UniqueIdentifier>{de1147a2-8a97-402f-8976-cddbf26323e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Project\GameObject\Floor">
+      <UniqueIdentifier>{d0d096e5-376d-4813-b194-bff2535e06d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Project\GameObject\Floor">
+      <UniqueIdentifier>{3eec8b69-ce70-449c-8ab2-e18d289b7e3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Project\GameObject\FollowCamera">
+      <UniqueIdentifier>{c145c830-e910-49ee-b593-cba6a64b3429}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Project\GameObject\FollowCamera">
+      <UniqueIdentifier>{a8153267-53ea-4075-bf3c-d6d9ca52667b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Project\GameObject\Goal">
+      <UniqueIdentifier>{57e13675-03f1-4af6-9807-f1cbaa80129e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Project\GameObject\Goal">
+      <UniqueIdentifier>{302f9212-558c-48f5-985d-5e6b64705ac3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Project\GameObject\Skydome">
+      <UniqueIdentifier>{d1a6d235-1fce-452d-9ce2-89cc52d92405}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Project\GameObject\Skydome">
+      <UniqueIdentifier>{fcb84cee-ab09-450c-9253-59d035c39f50}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -209,6 +239,27 @@
     </ClCompile>
     <ClCompile Include="Project\Game\GameScene.cpp">
       <Filter>ソース ファイル\Project\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Project\GameObject\Character\BaseCharacter.cpp">
+      <Filter>ソース ファイル\Project\GameObject\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Project\GameObject\Character\Enemy.cpp">
+      <Filter>ソース ファイル\Project\GameObject\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Project\GameObject\Character\Player.cpp">
+      <Filter>ソース ファイル\Project\GameObject\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Project\GameObject\Floor\Floor.cpp">
+      <Filter>ソース ファイル\Project\GameObject\Floor</Filter>
+    </ClCompile>
+    <ClCompile Include="Project\GameObject\FollowCamera\FollowCamera.cpp">
+      <Filter>ソース ファイル\Project\GameObject\FollowCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="Project\GameObject\Goal\Goal.cpp">
+      <Filter>ソース ファイル\Project\GameObject\Goal</Filter>
+    </ClCompile>
+    <ClCompile Include="Project\GameObject\Skydome\Skydome.cpp">
+      <Filter>ソース ファイル\Project\GameObject\Skydome</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -331,6 +382,27 @@
     </ClInclude>
     <ClInclude Include="Project\Game\GameManager.h">
       <Filter>ヘッダー ファイル\Project\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\GameObject\Character\BaseCharacter.h">
+      <Filter>ヘッダー ファイル\Project\GameObject\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\GameObject\Character\Enemy.h">
+      <Filter>ヘッダー ファイル\Project\GameObject\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\GameObject\Character\Player.h">
+      <Filter>ヘッダー ファイル\Project\GameObject\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\GameObject\Floor\Floor.h">
+      <Filter>ヘッダー ファイル\Project\GameObject\Floor</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\GameObject\FollowCamera\FollowCamera.h">
+      <Filter>ヘッダー ファイル\Project\GameObject\FollowCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\GameObject\Goal\Goal.h">
+      <Filter>ヘッダー ファイル\Project\GameObject\Goal</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\GameObject\Skydome\Skydome.h">
+      <Filter>ヘッダー ファイル\Project\GameObject\Skydome</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

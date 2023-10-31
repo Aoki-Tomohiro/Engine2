@@ -27,6 +27,17 @@ struct WorldTransform {
 	/// </summary>
 	void UpdateMatrix();
 
+	/// <summary>
+	/// 親を設定
+	/// </summary>
+	/// <param name="parent"></param>
+	void SetParent(const WorldTransform* parent);
+
+	/// <summary>
+	/// 親子付けを解除する
+	/// </summary>
+	void UnsetParent();
+
 	//CBV
 	Microsoft::WRL::ComPtr<ID3D12Resource> constBuff_ = nullptr;
 	//スケール
