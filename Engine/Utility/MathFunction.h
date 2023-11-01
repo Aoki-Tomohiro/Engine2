@@ -28,12 +28,27 @@ Vector3 Subtract(const Vector3& v1, const Vector3& v2);
 Vector3 Multiply(const Vector3& v1, const Vector3& v2);
 
 /// <summary>
-/// 掛け算
+/// ベクトルの掛け算
+/// </summary>
+/// <param name="v"></param>
+/// <param name="speed"></param>
+/// <returns></returns>
+Vector3 Multiply(const Vector3& v, const float speed);
+
+/// <summary>
+/// 内積
 /// </summary>
 /// <param name="v1"></param>
 /// <param name="v2"></param>
 /// <returns></returns>
-Vector3 Multiply(const float& v1, const Vector3& v2);
+float Dot(const Vector3& v1, const Vector3& v2);
+
+/// <summary>
+/// 長さ
+/// </summary>
+/// <param name="v"></param>
+/// <returns></returns>
+float Length(const Vector3& v);
 
 /// <summary>
 /// 正規化
@@ -43,11 +58,12 @@ Vector3 Multiply(const float& v1, const Vector3& v2);
 Vector3 Normalize(const Vector3& v);
 
 /// <summary>
-/// 長さを計算
+/// 足し算
 /// </summary>
-/// <param name="v"></param>
+/// <param name="m1"></param>
+/// <param name="m2"></param>
 /// <returns></returns>
-float Length(const Vector3& v);
+Matrix4x4 Add(Matrix4x4 m1, Matrix4x4 m2);
 
 /// <summary>
 /// 行列の引き算
@@ -71,6 +87,13 @@ Matrix4x4 Multiply(const Matrix4x4& m1, const Matrix4x4& m2);
 /// <param name="m"></param>
 /// <returns></returns>
 Matrix4x4 Inverse(const Matrix4x4& m);
+
+/// <summary>
+/// 転置行列
+/// </summary>
+/// <param name="m"></param>
+/// <returns></returns>
+Matrix4x4 Transpose(const Matrix4x4& m);
 
 /// <summary>
 /// 単位行列の作成
@@ -145,6 +168,26 @@ Matrix4x4 MakePerspectiveFovMatrix(float fovY, float aspectRatio, float nearClip
 Matrix4x4 MakeOrthographicMatrix(float left, float top, float right, float bottom, float nearClip, float farClip);
 
 /// <summary>
+/// ビューポート行列
+/// </summary>
+/// <param name="left"></param>
+/// <param name="top"></param>
+/// <param name="width"></param>
+/// <param name="height"></param>
+/// <param name="minDepth"></param>
+/// <param name="maxDepth"></param>
+/// <returns></returns>
+Matrix4x4 MakeViewportMatrix(float left, float top, float width, float height, float minDepth, float maxDepth);
+
+/// <summary>
+/// 座標変換
+/// </summary>
+/// <param name="v"></param>
+/// <param name="m"></param>
+/// <returns></returns>
+Vector3 Transform(const Vector3& v, const Matrix4x4& m);
+
+/// <summary>
 /// 座標変換
 /// </summary>
 /// <param name="vector"></param>
@@ -169,3 +212,28 @@ float Lerp(const float& v1, const float& v2, float t);
 /// <param name="t"></param>
 /// <returns></returns>
 Vector3 Lerp(const Vector3& v1, const Vector3& v2, float t);
+
+/// <summary>
+/// 球面線形補間
+/// </summary>
+/// <param name="v1"></param>
+/// <param name="v2"></param>
+/// <param name="t"></param>
+/// <returns></returns>
+Vector3 Slerp(const Vector3& v1, const Vector3& v2, float t);
+
+/// <summary>
+/// 最短角度補間
+/// </summary>
+/// <param name="a"></param>
+/// <param name="b"></param>
+/// <param name="t"></param>
+/// <returns></returns>
+float LerpShortAngle(const float& a, const float& b, float t);
+
+/// <summary>
+/// イージング
+/// </summary>
+/// <param name="x"></param>
+/// <returns></returns>
+float EaseOutSine(float x);
