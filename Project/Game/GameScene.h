@@ -60,6 +60,7 @@ private:
 	std::unique_ptr<Model> modelEnemyBody_ = nullptr;
 	std::unique_ptr<Model> modelEnemyL_arm_ = nullptr;
 	std::unique_ptr<Model> modelEnemyR_arm_ = nullptr;
+	std::unique_ptr<Model> weaponModel_ = nullptr;
 	//敵キャラ
 	std::unique_ptr<Enemy> enemy_ = nullptr;
 	//天球

@@ -132,6 +132,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -201,6 +202,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Project\GameObject\FollowCamera\FollowCamera.cpp" />
     <ClCompile Include="Project\GameObject\Goal\Goal.cpp" />
     <ClCompile Include="Project\GameObject\Skydome\Skydome.cpp" />
+    <ClCompile Include="Project\GameObject\Weapon\Weapon.cpp" />
     <ClCompile Include="Project\Game\GameManager.cpp" />
     <ClCompile Include="Project\Game\GameScene.cpp" />
   </ItemGroup>
@@ -249,6 +251,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Project\GameObject\FollowCamera\FollowCamera.h" />
     <ClInclude Include="Project\GameObject\Goal\Goal.h" />
     <ClInclude Include="Project\GameObject\Skydome\Skydome.h" />
+    <ClInclude Include="Project\GameObject\Weapon\Weapon.h" />
     <ClInclude Include="Project\Game\GameManager.h" />
     <ClInclude Include="Project\Game\GameScene.h" />
     <ClInclude Include="Project\Game\IScene.h" />

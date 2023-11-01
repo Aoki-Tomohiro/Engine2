@@ -15,7 +15,8 @@ void GameScene::Initialize(GameManager* gameManager) {
 	postProcess_ = PostProcess::GetInstance();
 	//プレイヤーの作成
 	playerModel_.reset(Model::CreateFromOBJ("Resources/Player", "Player.obj"));
-	std::vector<Model*> playerModels = { playerModel_.get() };
+	weaponModel_.reset(Model::CreateFromOBJ("Resources/Weapon", "Weapon.obj"));
+	std::vector<Model*> playerModels = { playerModel_.get(),weaponModel_.get() };
 	player_ = std::make_unique<Player>();
 	player_->Initialize(playerModels);
 	player_->SetViewProjection(&viewProjection_);
@@ -91,6 +92,9 @@ void GameScene::Update(GameManager* gameManager) {
 	//衝突判定
 	collisionManager_->ClearColliderList();
 	collisionManager_->SetColliderList(player_.get());
+	if (player_->GetWeapon()->GetIsAttack()) {
+		collisionManager_->SetColliderList(player_->GetWeapon());
+	}
 	collisionManager_->SetColliderList(enemy_.get());
 	for (std::unique_ptr<Floor>& floor : floors_) {
 		collisionManager_->SetColliderList(floor.get());

@@ -1,4 +1,5 @@
 #include "Enemy.h"
+#include "Engine/2D/ImGuiManager.h"
 
 void Enemy::Initialize(const std::vector<Model*>& models) {
 	//基底クラスの初期化
