@@ -36,6 +36,15 @@ Vector3 Multiply(const Vector3& v1, const float speed) {
 }
 
 
+Vector3 Cross(const Vector3& v1, const Vector3& v2) {
+	Vector3 result{};
+	result.x = (v1.y * v2.z) - (v1.z * v2.y);
+	result.y = (v1.z * v2.x) - (v1.x * v2.z);
+	result.z = (v1.x * v2.y) - (v1.y * v2.x);
+	return result;
+}
+
+
 float Dot(const Vector3& v1, const Vector3& v2) {
 	float result{};
 	result = v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
@@ -564,4 +573,31 @@ float LerpShortAngle(const float& a, const float& b, float t) {
 float EaseOutSine(float x) {
 	float PI = 3.14159265359f;
 	return 1 - std::cosf((x * PI) / 2);
+}
+
+
+Matrix4x4 DirectionToDirection(const Vector3& from, const Vector3& to) {
+	Matrix4x4 result{};
+	Vector3 normalizeFrom = Normalize(from);
+	Vector3 normalizeTo = Normalize(to);
+	Vector3 n = Normalize(Cross(normalizeFrom, normalizeTo));
+	float cosTheta = Dot(normalizeFrom, normalizeTo);
+	float sinTheta = Length(Cross(normalizeFrom, normalizeTo));
+	result.m[0][0] = n.x * n.x * (1 - cosTheta) + cosTheta;
+	result.m[0][1] = n.x * n.y * (1 - cosTheta) + n.z * sinTheta;
+	result.m[0][2] = n.x * n.z * (1 - cosTheta) - n.y * sinTheta;
+	result.m[0][3] = 0.0f;
+	result.m[1][0] = n.x * n.y * (1 - cosTheta) - n.z * sinTheta;
+	result.m[1][1] = n.y * n.y * (1 - cosTheta) + cosTheta;
+	result.m[1][2] = n.y * n.z * (1 - cosTheta) + n.x * sinTheta;
+	result.m[1][3] = 0.0f;
+	result.m[2][0] = n.x * n.z * (1 - cosTheta) + n.y * sinTheta;
+	result.m[2][1] = n.y * n.z * (1 - cosTheta) - n.x * sinTheta;
+	result.m[2][2] = n.z * n.z * (1 - cosTheta) + cosTheta;
+	result.m[2][3] = 0.0f;
+	result.m[3][0] = 0.0f;
+	result.m[3][1] = 0.0f;
+	result.m[3][2] = 0.0f;
+	result.m[3][3] = 0.0f;
+	return result;
 }

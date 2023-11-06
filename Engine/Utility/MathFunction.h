@@ -237,3 +237,5 @@ float LerpShortAngle(const float& a, const float& b, float t);
 /// <param name="x"></param>
 /// <returns></returns>
 float EaseOutSine(float x);
+
+Matrix4x4 DirectionToDirection(const Vector3& from, const Vector3& to);
