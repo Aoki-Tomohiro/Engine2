@@ -33,55 +33,55 @@ public:
 	/// <summary>
 	/// グラフィックスコマンドのセット
 	/// </summary>
-	/// <param name="rootParameterIndex">ルートパラメータの番号</param>
+	/// <param name="rootParameterIndex"></param>
 	void SetGraphicsCommand(UINT rootParameterIndex);
 
 	/// <summary>
 	/// 色を取得
 	/// </summary>
-	/// <returns>色</returns>
+	/// <returns></returns>
 	const Vector4& GetColor() const { return color_; };
 
 	/// <summary>
 	/// 色を設定
 	/// </summary>
-	/// <param name="color">色</param>
+	/// <param name="color"></param>
 	void SetColor(const Vector4& color) { color_ = color; };
 
 	/// <summary>
 	/// uv座標を取得
 	/// </summary>
-	/// <returns>uv座標</returns>
+	/// <returns></returns>
 	const Vector2& GetTranslation() const { return translation_; };
 
 	/// <summary>
 	/// uv座標を設定
 	/// </summary>
-	/// <param name="translation">uv座標</param>
+	/// <param name="translation"></param>
 	void SetTranslation(const Vector2& translation) { translation_ = translation; };
 
 	/// <summary>
 	/// uv角度を取得
 	/// </summary>
-	/// <returns>uv角度</returns>
+	/// <returns></returns>
 	const float& GetRotation() const { return rotation_; };
 
 	/// <summary>
 	/// uv角度を設定
 	/// </summary>
-	/// <param name="rotation">uv角度</param>
+	/// <param name="rotation"></param>
 	void SetRotation(const float& rotation) { rotation_ = rotation; };
 
 	/// <summary>
 	/// uvスケールを取得
 	/// </summary>
-	/// <returns>uvスケール</returns>
+	/// <returns></returns>
 	const Vector2& GetScale() const { return scale_; };
 
 	/// <summary>
 	/// uvスケールを設定
 	/// </summary>
-	/// <param name="scale">uvスケール</param>
+	/// <param name="scale"></param>
 	void SetScale(const Vector2& scale) { scale_ = scale; };
 
 private:

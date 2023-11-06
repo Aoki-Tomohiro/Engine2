@@ -25,7 +25,7 @@ public:
 	/// <summary>
 	/// メッシュの初期化
 	/// </summary>
-	/// <param name="vertices">頂点データ</param>
+	/// <param name="vertices"></param>
 	void Initialize(const std::vector<VertexData>& vertices);
 
 	/// <summary>

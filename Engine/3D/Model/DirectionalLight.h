@@ -57,61 +57,61 @@ public:
 	/// <summary>
 	/// ライティングのフラグを取得
 	/// </summary>
-	/// <returns>ライティングのフラグ</returns>
+	/// <returns></returns>
 	const int32_t& GetEnableLighting() const { return enableLighting_; };
 
 	/// <summary>
 	/// ライティングのフラグを設定
 	/// </summary>
-	/// <param name="enableLighting">ライティングのフラグ</param>
+	/// <param name="enableLighting"></param>
 	void SetEnableLighting(const int32_t& enableLighting) { enableLighting_ = enableLighting; };
 
 	/// <summary>
 	/// ライティングの種類を取得
 	/// </summary>
-	/// <returns>ライティングの種類</returns>
+	/// <returns></returns>
 	const int32_t& GetLightingMethod() const { return int32_t(lightingMethod_); };
 
 	/// <summary>
 	/// ライティングの種類を設定
 	/// </summary>
-	/// <param name="lightingMethod">ライティングの種類</param>
+	/// <param name="lightingMethod"></param>
 	void SetLightingMethod(const int32_t& lightingMethod) { lightingMethod_ = LightingMethod(lightingMethod); };
 
 	/// <summary>
 	/// 色を取得
 	/// </summary>
-	/// <returns>色</returns>
+	/// <returns></returns>
 	const Vector4& GetColor() const { return color_; };
 
 	/// <summary>
 	/// 色を設定
 	/// </summary>
-	/// <param name="color">色</param>
+	/// <param name="color"></param>
 	void SetColor(const Vector4& color) { color_ = color; };
 
 	/// <summary>
 	/// 向きを取得
 	/// </summary>
-	/// <returns>向き</returns>
+	/// <returns></returns>
 	const Vector3& GetDirection() const { return direction_; };
 
 	/// <summary>
 	/// 向きを設定
 	/// </summary>
-	/// <param name="direction">向き</param>
+	/// <param name="direction"></param>
 	void SetDirection(const Vector3& direction) { direction_ = direction; };
 
 	/// <summary>
 	/// 輝度を取得
 	/// </summary>
-	/// <returns>輝度</returns>
+	/// <returns></returns>
 	const float& GetIntensity() const { return intensity_; };
 
 	/// <summary>
 	/// 輝度を設定
 	/// </summary>
-	/// <param name="intensity">輝度</param>
+	/// <param name="intensity"></param>
 	void SetIntensity(const float& intensity) { intensity_ = intensity; };
 
 private:

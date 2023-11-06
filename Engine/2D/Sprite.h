@@ -62,9 +62,9 @@ public:
 	/// <summary>
 	/// スプライトの作成
 	/// </summary>
-	/// <param name="textureHandle">テクスチャハンドル</param>
-	/// <param name="position">座標</param>
-	/// <returns>スプライト</returns>
+	/// <param name="textureHandle"></param>
+	/// <param name="position"></param>
+	/// <returns></returns>
 	static Sprite* Create(uint32_t textureHandle, Vector2 position);
 
 	/// <summary>
@@ -86,85 +86,85 @@ public:
 	/// <summary>
 	/// 座標を取得
 	/// </summary>
-	/// <returns>座標</returns>
+	/// <returns></returns>
 	const Vector2& GetPosition() const { return position_; };
 
 	/// <summary>
 	/// 座標を設定
 	/// </summary>
-	/// <param name="position">座標</param>
+	/// <param name="position"></param>
 	void SetPosition(const Vector2& position) { position_ = position; };
 
 	/// <summary>
 	/// 角度を取得
 	/// </summary>
-	/// <returns>角度</returns>
+	/// <returns></returns>
 	const float& GetRotation() const { return rotation_; };
 
 	/// <summary>
 	/// 角度を設定
 	/// </summary>
-	/// <param name="rotation">角度</param>
+	/// <param name="rotation"></param>
 	void SetRotation(const float& rotation) { rotation_ = rotation; };
 
 	/// <summary>
 	/// サイズを取得
 	/// </summary>
-	/// <returns>サイズ</returns>
+	/// <returns></returns>
 	const Vector2& GetSize() const { return size_; };
 
 	/// <summary>
 	/// サイズを設定
 	/// </summary>
-	/// <param name="size">サイズ</param>
+	/// <param name="size"></param>
 	void SetSize(const Vector2& size) { size_ = size; };
 
 	/// <summary>
 	/// 色を取得
 	/// </summary>
-	/// <returns>色</returns>
+	/// <returns></returns>
 	const Vector4& GetColor() const { return color_; };
 
 	/// <summary>
 	/// 色を設定
 	/// </summary>
-	/// <param name="color">色</param>
+	/// <param name="color"></param>
 	void SetColor(const Vector4& color) { color_ = color; };
 
 	/// <summary>
 	/// uv座標を取得
 	/// </summary>
-	/// <returns>uv座標</returns>
+	/// <returns></returns>
 	const Vector2 GetUVTranslation() const { return uvTranslation_; };
 
 	/// <summary>
 	/// uv座標を設定
 	/// </summary>
-	/// <param name="uvTranslation">uv座標</param>
+	/// <param name="uvTranslation"></param>
 	void SetUVTranslation(const Vector2& uvTranslation) { uvTranslation_ = uvTranslation; };
 
 	/// <summary>
 	/// uv角度を取得
 	/// </summary>
-	/// <returns>uv角度</returns>
+	/// <returns></returns>
 	const float GetUVRotation() const { return uvRotation_; };
 
 	/// <summary>
 	/// uv角度を設定
 	/// </summary>
-	/// <param name="uvRotation">uv角度</param>
+	/// <param name="uvRotation"></param>
 	void SetUVRotation(const float& uvRotation) { uvRotation_ = uvRotation; };
 
 	/// <summary>
 	/// uvスケールを取得
 	/// </summary>
-	/// <returns>uvスケール</returns>
+	/// <returns></returns>
 	const Vector2 GetUVScale() const { return uvScale_; };
 
 	/// <summary>
 	/// uvスケールを設定
 	/// </summary>
-	/// <param name="uvScale">uvスケール</param>
+	/// <param name="uvScale"></param>
 	void SetUVScale(const Vector2& uvScale) { uvScale_ = uvScale; };
 
 private:
@@ -176,9 +176,9 @@ private:
 	/// <summary>
 	/// シェーダーをコンパイルする
 	/// </summary>
-	/// <param name="filePath">Compilerするshaderのファイルパス</param>
-	/// <param name="profile">Compilerで使用するProfile</param>
-	/// <returns>実行用のバイナリ</returns>
+	/// <param name="filePath"></param>
+	/// <param name="profile"></param>
+	/// <returns></returns>
 	static ComPtr<IDxcBlob> CompileShader(
 		const std::wstring& filePath,
 		const wchar_t* profile);

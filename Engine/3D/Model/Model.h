@@ -133,16 +133,16 @@ private:
 	/// <summary>
 	/// Objファイルの読み込み
 	/// </summary>
-	/// <param name="directoryPath">ディレクトリ名</param>
-	/// <param name="filename">ファイル名</param>
+	/// <param name="directoryPath"></param>
+	/// <param name="filename"></param>
 	/// <returns></returns>
 	ModelData LoadObjFile(const std::string& directoryPath, const std::string& filename);
 
 	/// <summary>
 	/// mtlファイルの読み込み
 	/// </summary>
-	/// <param name="directoryPath">ディレクトリ名</param>
-	/// <param name="filename">ファイル名</param>
+	/// <param name="directoryPath"></param>
+	/// <param name="filename"></param>
 	/// <returns></returns>
 	MaterialData LoadMaterialTemplateFile(const std::string& directoryPath, const std::string& filename);
 

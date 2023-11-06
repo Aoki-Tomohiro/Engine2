@@ -18,7 +18,7 @@ public:
 	/// <summary>
 	/// シングルインスタンスの取得
 	/// </summary>
-	/// <returns>シングルトンインスタンス</returns>
+	/// <returns></returns>
 	static Input* GetInstance();
 
 	/// <summary>
