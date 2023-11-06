@@ -100,6 +100,12 @@ public:
 	bool GetJoystickState(XINPUT_STATE& state);
 
 private:
+	Input() = default;
+	~Input() = default;
+	Input(const Input&) = delete;
+	const Input& operator = (const Input&) = delete;
+
+private:
 	//WindowsAPI
 	WinApp* winApp_ = nullptr;
 	//DirectInput
