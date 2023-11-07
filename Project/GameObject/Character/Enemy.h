@@ -69,6 +69,7 @@ private:
 	float amplitude_ = 0.1f;
 	//移動速度
 	Vector3 velocity_{0.1f,0.0f,0.0f};
+	bool isDead_ = false;
 
 };
 

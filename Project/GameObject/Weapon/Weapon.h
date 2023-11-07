@@ -40,7 +40,13 @@ public:
 	/// <summary>
 	/// 攻撃フラグを取得
 	/// </summary>
+	/// <returns></returns>
 	bool GetIsAttack() { return isAttack_; };
+
+	/// <summary>
+	/// 攻撃フラグを取得
+	/// </summary>
+	bool GetIsHit() { return isHit_; };
 
 	/// <summary>
 	/// ワールド変換データを取得
@@ -71,8 +77,11 @@ private:
 	Model* model_ = nullptr;
 	//ワールドトランスフォーム
 	WorldTransform worldTransform_{};
+	WorldTransform worldTransformCollision_{};
 	//攻撃フラグ
 	bool isAttack_ = false;
+	//当たり判定のフラグ
+	bool isHit_ = false;
 	//アニメーションタイマー
 	uint16_t animationTimer_ = 0;
 	uint16_t animationCount_ = 0;

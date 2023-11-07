@@ -41,6 +41,13 @@ void Enemy::Update() {
 	worldTransformBody_.UpdateMatrix();
 	worldTransformL_arm_.UpdateMatrix();
 	worldTransformR_arm_.UpdateMatrix();
+
+	if (isDead_) {
+		ImGui::Begin("Enemy");
+		ImGui::Text("Dead");
+		ImGui::Checkbox("Reset", &isDead_);
+		ImGui::End();
+	}
 }
 
 void Enemy::Draw(const ViewProjection& viewProjection) {
@@ -73,7 +80,9 @@ void Enemy::UpdateFloatingGimmick() {
 }
 
 void Enemy::OnCollision(Collider* collider) {
-
+	if (collider->GetCollisionAttribute() & kCollisionAttributeWeapon) {
+		isDead_ = true;
+	}
 }
 
 Vector3 Enemy::GetWorldPosition() {

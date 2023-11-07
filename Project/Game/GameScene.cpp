@@ -92,7 +92,7 @@ void GameScene::Update(GameManager* gameManager) {
 	//衝突判定
 	collisionManager_->ClearColliderList();
 	collisionManager_->SetColliderList(player_.get());
-	if (player_->GetWeapon()->GetIsAttack()) {
+	if (player_->GetWeapon()->GetIsHit()) {
 		collisionManager_->SetColliderList(player_->GetWeapon());
 	}
 	collisionManager_->SetColliderList(enemy_.get());
