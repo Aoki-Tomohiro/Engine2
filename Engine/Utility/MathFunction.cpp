@@ -578,11 +578,20 @@ float EaseOutSine(float x) {
 
 Matrix4x4 DirectionToDirection(const Vector3& from, const Vector3& to) {
 	Matrix4x4 result{};
-	Vector3 normalizeFrom = Normalize(from);
-	Vector3 normalizeTo = Normalize(to);
-	Vector3 n = Normalize(Cross(normalizeFrom, normalizeTo));
-	float cosTheta = Dot(normalizeFrom, normalizeTo);
-	float sinTheta = Length(Cross(normalizeFrom, normalizeTo));
+	Vector3 n{};
+	if (from.x == -to.x || from.y == -to.y || from.z == -to.z) {
+		if (from.x != 0.0f || from.y != 0.0f) {
+			n = { from.y,-from.x,0.0f };
+		}
+		else if (from.y != 0.0f || from.z != 0.0f) {
+			n = { from.z,0.0f,-from.x };
+		}
+	}
+	else {
+		n = Normalize(Cross(from, to));
+	}
+	float cosTheta = Dot(from, to);
+	float sinTheta = Length(Cross(from, to));
 	result.m[0][0] = n.x * n.x * (1 - cosTheta) + cosTheta;
 	result.m[0][1] = n.x * n.y * (1 - cosTheta) + n.z * sinTheta;
 	result.m[0][2] = n.x * n.z * (1 - cosTheta) - n.y * sinTheta;
@@ -598,6 +607,6 @@ Matrix4x4 DirectionToDirection(const Vector3& from, const Vector3& to) {
 	result.m[3][0] = 0.0f;
 	result.m[3][1] = 0.0f;
 	result.m[3][2] = 0.0f;
-	result.m[3][3] = 0.0f;
+	result.m[3][3] = 1.0f;
 	return result;
 }
