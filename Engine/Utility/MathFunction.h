@@ -166,6 +166,14 @@ Matrix4x4 MakeOrthographicMatrix(float left, float top, float right, float botto
 /// <param name="vector"></param>
 /// <param name="matrix"></param>
 /// <returns></returns>
+Vector3 Transform(const Vector3& vector, const Matrix4x4& matrix);
+
+/// <summary>
+/// 座標変換
+/// </summary>
+/// <param name="vector"></param>
+/// <param name="matrix"></param>
+/// <returns></returns>
 Vector3 TransformNormal(const Vector3& vector, const Matrix4x4& matrix);
 
 /// <summary>
@@ -201,3 +209,12 @@ float Norm(const Quaternion& quaternion);
 Quaternion Normalize(const Quaternion& quaternion);
 
 Quaternion Inverse(const Quaternion& quaternion);
+
+//任意軸回転を表すQuaternionの生成
+Quaternion MakeRotateAxisAngleQuaternion(const Vector3& axis, float angle);
+
+//ベクトルをQuaternionで回転させた結果のベクトルを求める
+Vector3 RotateVector(const Vector3& vector, const Quaternion& quaternion);
+
+//Quaternionから回転行列を求める
+Matrix4x4 MakeRotateMatrix(const Quaternion& quaternion);
