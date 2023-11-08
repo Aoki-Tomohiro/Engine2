@@ -20,3 +20,10 @@ struct AABB {
 	Vector3 min;
 	Vector3 max;
 };
+
+struct Quaternion {
+	float x;
+	float y;
+	float z;
+	float w;
+};

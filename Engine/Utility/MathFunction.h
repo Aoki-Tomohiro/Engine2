@@ -189,3 +189,15 @@ Vector3 Lerp(const Vector3& v1, const Vector3& v2, float t);
 Matrix4x4 MakeRotateAxisAngle(Vector3 axis, float angle);
 
 Matrix4x4 DirectionToDirection(const Vector3& from, const Vector3& to);
+
+Quaternion Multiply(const Quaternion& lhs, const Quaternion& rhs);
+
+Quaternion IdentityQuaternion();
+
+Quaternion Conjugate(const Quaternion& quaternion);
+
+float Norm(const Quaternion& quaternion);
+
+Quaternion Normalize(const Quaternion& quaternion);
+
+Quaternion Inverse(const Quaternion& quaternion);
