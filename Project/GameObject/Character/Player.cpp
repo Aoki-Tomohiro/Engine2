@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Engine/Utility/GlobalVariables.h"
 #include <cassert>
+#include <numbers>
 
 void Player::Initialize(const std::vector<Model*>& models) {
 	//基底クラスの初期化
@@ -86,7 +87,30 @@ void Player::Update() {
 
 
 	//ワールドトランスフォームの更新
-	worldTransform_.UpdateMatrix();
+	//worldTransform_.UpdateMatrix();
+	Matrix4x4 worldMatrix{};
+	worldMatrix.m[0][0] = worldTransform_.scale_.x * matRot_.m[0][0];
+	worldMatrix.m[0][1] = worldTransform_.scale_.x * matRot_.m[0][1];
+	worldMatrix.m[0][2] = worldTransform_.scale_.x * matRot_.m[0][2];
+	worldMatrix.m[0][3] = 0.0f;
+	worldMatrix.m[1][0] = worldTransform_.scale_.y * matRot_.m[1][0];
+	worldMatrix.m[1][1] = worldTransform_.scale_.y * matRot_.m[1][1];
+	worldMatrix.m[1][2] = worldTransform_.scale_.y * matRot_.m[1][2];
+	worldMatrix.m[1][3] = 0.0f;
+	worldMatrix.m[2][0] = worldTransform_.scale_.z * matRot_.m[2][0];
+	worldMatrix.m[2][1] = worldTransform_.scale_.z * matRot_.m[2][1];
+	worldMatrix.m[2][2] = worldTransform_.scale_.z * matRot_.m[2][2];
+	worldMatrix.m[2][3] = 0.0f;
+	worldMatrix.m[3][0] = worldTransform_.translation_.x;
+	worldMatrix.m[3][1] = worldTransform_.translation_.y;
+	worldMatrix.m[3][2] = worldTransform_.translation_.z;
+	worldMatrix.m[3][3] = 1.0f;
+	worldTransform_.matWorld_ = worldMatrix;
+	//親がいれば行列を掛ける
+	if (worldTransform_.parent_) {
+		worldTransform_.matWorld_ = Multiply(worldTransform_.matWorld_, worldTransform_.parent_->matWorld_);
+	}
+	worldTransform_.TransferMatrix();
 
 	//武器の更新
 	weapon_->Update();
@@ -97,12 +121,12 @@ void Player::Update() {
 
 	//グローバル変数の適応
 	Player::ApplyGlobalVariables();
+
+	ImGui::Begin("Player");
 	Matrix4x4 rotateXMatrix = MakeRotateXMatrix(worldTransform_.rotation_.x);
 	Matrix4x4 rotateYMatrix = MakeRotateYMatrix(worldTransform_.rotation_.y);
 	Matrix4x4 rotateZMatrix = MakeRotateZMatrix(worldTransform_.rotation_.z);
 	Matrix4x4 rotateMatrix = Multiply(rotateXMatrix, Multiply(rotateYMatrix, rotateZMatrix));
-
-	ImGui::Begin("Player");
 	ImGui::Text("WorldTransform matRot_\n%f %f %f %f\n%f %f %f %f\n%f %f %f %f\n%f %f %f %f",
 		rotateMatrix.m[0][0], rotateMatrix.m[0][1], rotateMatrix.m[0][2],rotateMatrix.m[0][3],
 		rotateMatrix.m[1][0], rotateMatrix.m[1][1], rotateMatrix.m[1][2],rotateMatrix.m[1][3],
