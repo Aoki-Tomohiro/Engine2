@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "Engine/Utility/GlobalVariables.h"
 #include <cassert>
 
 void Player::Initialize(const std::vector<Model*>& models) {
@@ -14,6 +15,12 @@ void Player::Initialize(const std::vector<Model*>& models) {
 	SetCollisionAttribute(kCollisionAttributePlayer);
 	SetCollisionMask(kCollisionMaskPlayer);
 	SetCollisionPrimitive(kCollisionPrimitiveAABB);
+
+	GlobalVariables* globalVariables = GlobalVariables::GetInstance();
+	const char* groupName = "Player";
+	//グループを追加
+	globalVariables->CreateGroup(groupName);
+	globalVariables->AddItem(groupName, "BehaviorDashTime", behaviorDashTime_);
 }
 
 void Player::Update() {
@@ -87,6 +94,26 @@ void Player::Update() {
 	//次のフレーム用のフラグを保存
 	preOnCollision_ = onCollision_;
 	onCollision_ = false;
+
+	//グローバル変数の適応
+	Player::ApplyGlobalVariables();
+	Matrix4x4 rotateXMatrix = MakeRotateXMatrix(worldTransform_.rotation_.x);
+	Matrix4x4 rotateYMatrix = MakeRotateYMatrix(worldTransform_.rotation_.y);
+	Matrix4x4 rotateZMatrix = MakeRotateZMatrix(worldTransform_.rotation_.z);
+	Matrix4x4 rotateMatrix = Multiply(rotateXMatrix, Multiply(rotateYMatrix, rotateZMatrix));
+
+	ImGui::Begin("Player");
+	ImGui::Text("WorldTransform matRot_\n%f %f %f %f\n%f %f %f %f\n%f %f %f %f\n%f %f %f %f",
+		rotateMatrix.m[0][0], rotateMatrix.m[0][1], rotateMatrix.m[0][2],rotateMatrix.m[0][3],
+		rotateMatrix.m[1][0], rotateMatrix.m[1][1], rotateMatrix.m[1][2],rotateMatrix.m[1][3],
+		rotateMatrix.m[2][0], rotateMatrix.m[2][1], rotateMatrix.m[2][2],rotateMatrix.m[2][3],
+		rotateMatrix.m[3][0], rotateMatrix.m[3][1], rotateMatrix.m[3][2],rotateMatrix.m[3][3]);
+	ImGui::Text("DirectionToDirection matRot_\n%f %f %f %f\n%f %f %f %f\n%f %f %f %f\n%f %f %f %f",
+		matRot_.m[0][0], matRot_.m[0][1], matRot_.m[0][2], matRot_.m[0][3],
+		matRot_.m[1][0], matRot_.m[1][1], matRot_.m[1][2], matRot_.m[1][3],
+		matRot_.m[2][0], matRot_.m[2][1], matRot_.m[2][2], matRot_.m[2][3],
+		matRot_.m[3][0], matRot_.m[3][1], matRot_.m[3][2], matRot_.m[3][3]);
+	ImGui::End();
 }
 
 void Player::Draw(const ViewProjection& viewProjection) {
@@ -180,6 +207,7 @@ void Player::BehaviorRootUpdate() {
 
 			//目標角度の算出
 			destinationAngleY_ = std::atan2(move.x, move.z);
+			matRot_ = DirectionToDirection(Normalize(worldTransform_.translation_), Normalize(move));
 
 			//移動
 			worldTransform_.translation_ = Add(worldTransform_.translation_, move);
@@ -243,10 +271,8 @@ void Player::BehaviorDashUpdate() {
 		worldTransform_.translation_ = Add(worldTransform_.translation_, move);
 	}
 
-	//ダッシュの時間
-	const uint32_t behaviorDashTime = 10;
 	//規定の時間経過で通常行動に戻る
-	if (++workDash_.dashParameter_ >= behaviorDashTime) {
+	if (++workDash_.dashParameter_ >= behaviorDashTime_) {
 		behaviorRequest_ = Behavior::kRoot;
 	}
 }
@@ -261,4 +287,10 @@ void Player::BehaviorAttackUpdate() {
 	if (weapon_->GetIsAttack() == false) {
 		behaviorRequest_ = Behavior::kRoot;
 	}
+}
+
+void Player::ApplyGlobalVariables() {
+	GlobalVariables* globalVariables = GlobalVariables::GetInstance();
+	const char* groupName = "Player";
+	behaviorDashTime_ = globalVariables->GetIntValue(groupName, "BehaviorDashTime");
 }

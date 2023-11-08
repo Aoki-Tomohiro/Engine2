@@ -21,7 +21,7 @@ public:
 	//ダッシュ用ワーク
 	struct WorkDash {
 		//ダッシュ用の媒介変数
-		uint32_t dashParameter_ = 0;
+		int dashParameter_ = 0;
 		uint32_t coolTime = 0;
 	};
 
@@ -114,6 +114,11 @@ private:
 	/// </summary>
 	void BehaviorAttackUpdate();
 
+	/// <summary>
+	/// グローバル変数の適応
+	/// </summary>
+	void ApplyGlobalVariables();
+
 private:
 	//入力クラス
 	Input* input_ = nullptr;
@@ -134,4 +139,8 @@ private:
 	const WorldTransform* parent_ = nullptr;
 	//武器
 	std::unique_ptr<Weapon> weapon_ = nullptr;
+	//ダッシュ時間
+	int behaviorDashTime_ = 10;
+	//回転行列
+	Matrix4x4 matRot_{};
 };
