@@ -43,6 +43,22 @@ Vector3 Multiply(const float& v1, const Vector3& v2);
 Vector3 Normalize(const Vector3& v);
 
 /// <summary>
+/// クロス積
+/// </summary>
+/// <param name="v1"></param>
+/// <param name="v2"></param>
+/// <returns></returns>
+Vector3 Cross(const Vector3& v1, const Vector3& v2);
+
+/// <summary>
+/// 内積
+/// </summary>
+/// <param name="v1"></param>
+/// <param name="v2"></param>
+/// <returns></returns>
+float Dot(const Vector3& v1, const Vector3& v2);
+
+/// <summary>
 /// 長さを計算
 /// </summary>
 /// <param name="v"></param>
@@ -169,3 +185,5 @@ float Lerp(const float& v1, const float& v2, float t);
 /// <param name="t"></param>
 /// <returns></returns>
 Vector3 Lerp(const Vector3& v1, const Vector3& v2, float t);
+
+Matrix4x4 MakeRotateAxisAngle(Vector3 axis, float angle);

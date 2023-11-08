@@ -51,6 +51,21 @@ Vector3 Normalize(const Vector3& v) {
 }
 
 
+Vector3 Cross(const Vector3& v1, const Vector3& v2) {
+	Vector3 result{};
+	result.x = (v1.y * v2.z) - (v1.z * v2.y);
+	result.y = (v1.z * v2.x) - (v1.x * v2.z);
+	result.z = (v1.x * v2.y) - (v1.y * v2.x);
+	return result;
+}
+
+
+float Dot(const Vector3& v1, const Vector3& v2) {
+	float result{};
+	result = v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
+	return result;
+}
+
 
 float Length(const Vector3& v) {
 	float result{};
@@ -433,5 +448,26 @@ Vector3 Lerp(const Vector3& v1, const Vector3& v2, float t) {
 	result.x = v1.x + t * (v2.x - v1.x);
 	result.y = v1.y + t * (v2.y - v1.y);
 	result.z = v1.z + t * (v2.z - v1.z);
+	return result;
+}
+
+Matrix4x4 MakeRotateAxisAngle(Vector3 axis, float angle) {
+	Matrix4x4 result{};
+	result.m[0][0] = axis.x * axis.x * (1 - std::cos(angle)) + std::cos(angle);
+	result.m[0][1] = axis.x * axis.y * (1 - std::cos(angle)) + axis.z * std::sin(angle);
+	result.m[0][2] = axis.x * axis.z * (1 - std::cos(angle)) - axis.y * std::sin(angle);
+	result.m[0][3] = 0.0f;
+	result.m[1][0] = axis.x * axis.y * (1 - std::cos(angle)) - axis.z * std::sin(angle);
+	result.m[1][1] = axis.y * axis.y * (1 - std::cos(angle)) + std::cos(angle);
+	result.m[1][2] = axis.y * axis.z * (1 - std::cos(angle)) + axis.x * std::sin(angle);
+	result.m[1][3] = 0.0f;
+	result.m[2][0] = axis.x * axis.z * (1 - std::cos(angle)) + axis.y * std::sin(angle);
+	result.m[2][1] = axis.y * axis.z * (1 - std::cos(angle)) - axis.x * std::sin(angle);
+	result.m[2][2] = axis.z * axis.z * (1 - std::cos(angle)) + std::cos(angle);
+	result.m[2][3] = 0.0f;
+	result.m[3][0] = 0.0f;
+	result.m[3][1] = 0.0f;
+	result.m[3][2] = 0.0f;
+	result.m[3][3] = 1.0f;
 	return result;
 }
