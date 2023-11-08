@@ -187,3 +187,5 @@ float Lerp(const float& v1, const float& v2, float t);
 Vector3 Lerp(const Vector3& v1, const Vector3& v2, float t);
 
 Matrix4x4 MakeRotateAxisAngle(Vector3 axis, float angle);
+
+Matrix4x4 DirectionToDirection(const Vector3& from, const Vector3& to);
