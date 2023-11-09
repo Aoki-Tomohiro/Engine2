@@ -76,10 +76,9 @@ float Dot(const Vector3& v1, const Vector3& v2);
 /// <summary>
 /// 長さを計算
 /// </summary>
-/// <param name="m1"></param>
-/// <param name="m2"></param>
+/// <param name="v"></param>
 /// <returns></returns>
-Matrix4x4 Add(Matrix4x4 m1, Matrix4x4 m2);
+float Length(const Vector3& v);
 
 /// <summary>
 /// 行列の引き算
