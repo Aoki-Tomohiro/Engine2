@@ -1,4 +1,5 @@
 #include "MathFunction.h"
+#include <limits>
 
 Vector3 Add(const Vector3& v1, const Vector3& v2) {
 	Vector3 result;
@@ -638,6 +639,13 @@ Quaternion Slerp(const Quaternion& q0, const Quaternion& q1, float t) {
 	if (dot < 0.0f) {
 		localQ0 = { -localQ0.x,-localQ0.y,-localQ0.z,-localQ0.w };
 		dot = -dot;
+	}
+	if (dot >= 1.0f - std::numeric_limits<float>::epsilon()) {
+		result.x = (1.0f - t) * localQ0.x + t * localQ1.x;
+		result.y = (1.0f - t) * localQ0.y + t * localQ1.y;
+		result.z = (1.0f - t) * localQ0.z + t * localQ1.z;
+		result.w = (1.0f - t) * localQ0.w + t * localQ1.w;
+		return result;
 	}
 	float theta = std::acos(dot);
 	float scale0 = std::sin((1 - t) * theta) / std::sin(theta);
