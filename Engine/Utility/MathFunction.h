@@ -218,3 +218,5 @@ Vector3 RotateVector(const Vector3& vector, const Quaternion& quaternion);
 
 //Quaternionから回転行列を求める
 Matrix4x4 MakeRotateMatrix(const Quaternion& quaternion);
+
+Quaternion Slerp(const Quaternion& q0, const Quaternion& q1, float t);

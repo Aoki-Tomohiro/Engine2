@@ -630,3 +630,21 @@ Matrix4x4 MakeRotateMatrix(const Quaternion& quaternion) {
 	return result;
 }
 
+Quaternion Slerp(const Quaternion& q0, const Quaternion& q1, float t) {
+	Quaternion result{};
+	Quaternion localQ0 = q0;
+	Quaternion localQ1 = q1;
+	float dot = localQ0.x * localQ1.x + localQ0.y * localQ1.y + localQ0.z * localQ1.z + localQ0.w * localQ1.w;
+	if (dot < 0.0f) {
+		localQ0 = { -localQ0.x,-localQ0.y,-localQ0.z,-localQ0.w };
+		dot = -dot;
+	}
+	float theta = std::acos(dot);
+	float scale0 = std::sin((1 - t) * theta) / std::sin(theta);
+	float scale1 = std::sin(t * theta) / std::sin(theta);
+	result.x = scale0 * localQ0.x + scale1 * localQ1.x;
+	result.y = scale0 * localQ0.y + scale1 * localQ1.y;
+	result.z = scale0 * localQ0.z + scale1 * localQ1.z;
+	result.w = scale0 * localQ0.w + scale1 * localQ1.w;
+	return result;
+}
