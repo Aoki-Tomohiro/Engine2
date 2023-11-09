@@ -110,9 +110,9 @@ private:
 	/// <summary>
 	/// シェーダーをコンパイルする
 	/// </summary>
-	/// <param name="filePath">Compilerするshaderのファイルパス</param>
-	/// <param name="profile">Compilerで使用するProfile</param>
-	/// <returns>実行用のバイナリ</returns>
+	/// <param name="filePath"></param>
+	/// <param name="profile"></param>
+	/// <returns></returns>
 	static ComPtr<IDxcBlob> CompileShader(
 		const std::wstring& filePath,
 		const wchar_t* profile);
@@ -141,16 +141,16 @@ private:
 	/// <summary>
 	/// Objファイルの読み込み
 	/// </summary>
-	/// <param name="directoryPath">ディレクトリ名</param>
-	/// <param name="filename">ファイル名</param>
+	/// <param name="directoryPath"></param>
+	/// <param name="filename"></param>
 	/// <returns></returns>
 	ModelData LoadObjFile(const std::string& directoryPath, const std::string& filename);
 
 	/// <summary>
 	/// mtlファイルの読み込み
 	/// </summary>
-	/// <param name="directoryPath">ディレクトリ名</param>
-	/// <param name="filename">ファイル名</param>
+	/// <param name="directoryPath"></param>
+	/// <param name="filename"></param>
 	/// <returns></returns>
 	MaterialData LoadMaterialTemplateFile(const std::string& directoryPath, const std::string& filename);
 

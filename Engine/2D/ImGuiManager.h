@@ -12,7 +12,7 @@ public:
 	/// <summary>
 	/// シングルトンインスタンスの取得
 	/// </summary>
-	/// <returns>シングルトンインスタンス</returns>
+	/// <returns></returns>
 	static ImGuiManager* GetInstance();
 
 	/// <summary>

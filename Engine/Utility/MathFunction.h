@@ -58,7 +58,23 @@ float Length(const Vector3& v);
 Vector3 Normalize(const Vector3& v);
 
 /// <summary>
-/// 足し算
+/// クロス積
+/// </summary>
+/// <param name="v1"></param>
+/// <param name="v2"></param>
+/// <returns></returns>
+Vector3 Cross(const Vector3& v1, const Vector3& v2);
+
+/// <summary>
+/// 内積
+/// </summary>
+/// <param name="v1"></param>
+/// <param name="v2"></param>
+/// <returns></returns>
+float Dot(const Vector3& v1, const Vector3& v2);
+
+/// <summary>
+/// 長さを計算
 /// </summary>
 /// <param name="m1"></param>
 /// <param name="m2"></param>
@@ -193,6 +209,14 @@ Vector3 Transform(const Vector3& v, const Matrix4x4& m);
 /// <param name="vector"></param>
 /// <param name="matrix"></param>
 /// <returns></returns>
+Vector3 Transform(const Vector3& vector, const Matrix4x4& matrix);
+
+/// <summary>
+/// 座標変換
+/// </summary>
+/// <param name="vector"></param>
+/// <param name="matrix"></param>
+/// <returns></returns>
 Vector3 TransformNormal(const Vector3& vector, const Matrix4x4& matrix);
 
 /// <summary>
@@ -239,3 +263,30 @@ float LerpShortAngle(const float& a, const float& b, float t);
 float EaseOutSine(float x);
 
 Matrix4x4 DirectionToDirection(const Vector3& from, const Vector3& to);
+
+Matrix4x4 MakeRotateAxisAngle(Vector3 axis, float angle);
+
+Matrix4x4 DirectionToDirection(const Vector3& from, const Vector3& to);
+
+Quaternion Multiply(const Quaternion& lhs, const Quaternion& rhs);
+
+Quaternion IdentityQuaternion();
+
+Quaternion Conjugate(const Quaternion& quaternion);
+
+float Norm(const Quaternion& quaternion);
+
+Quaternion Normalize(const Quaternion& quaternion);
+
+Quaternion Inverse(const Quaternion& quaternion);
+
+//任意軸回転を表すQuaternionの生成
+Quaternion MakeRotateAxisAngleQuaternion(const Vector3& axis, float angle);
+
+//ベクトルをQuaternionで回転させた結果のベクトルを求める
+Vector3 RotateVector(const Vector3& vector, const Quaternion& quaternion);
+
+//Quaternionから回転行列を求める
+Matrix4x4 MakeRotateMatrix(const Quaternion& quaternion);
+
+Quaternion Slerp(const Quaternion& q0, const Quaternion& q1, float t);

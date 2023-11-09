@@ -78,7 +78,7 @@ public:
 	/// <summary>
 	/// シングルトンインスタンスの取得
 	/// </summary>
-	/// <returns>シングルトンインスタンス</returns>
+	/// <returns></returns>
 	static PostProcess* GetInstance();
 
 	/// <summary>
@@ -109,13 +109,13 @@ public:
 	/// <summary>
 	/// ポストプロセスのフラグを設定
 	/// </summary>
-	/// <param name="flag">フラグ</param>
+	/// <param name="flag"></param>
 	void SetIsPostProcessActive(bool flag) { isPostProcessActive_ = flag; };
 
 	/// <summary>
 	/// Bloomのフラグを設定
 	/// </summary>
-	/// <param name="flag">フラグ</param>
+	/// <param name="flag"></param>
 	void SetIsBloomActive(bool flag) { isBloomActive_ = flag; };
 
 	/// <summary>
@@ -145,31 +145,31 @@ public:
 	/// <summary>
 	/// LensDistortionのフラグを設定
 	/// </summary>
-	/// <param name="flag">フラグ</param>
+	/// <param name="flag"></param>
 	void SetIsLensDistortionActive(bool flag) { isLensDistortionActive_ = flag; };
 
 	/// <summary>
 	/// LensDistortionの歪みのきつさを設定
 	/// </summary>
-	/// <param name="tightness">歪みのきつさ</param>
+	/// <param name="tightness"></param>
 	void SetLensDistortionTightness(float tightness) { lensDistortionTightness_ = tightness; };
 
 	/// <summary>
 	/// LensDistortionの強さを設定
 	/// </summary>
-	/// <param name="strength">-1 ~ 1までの強さ</param>
+	/// <param name="strength">-1 ~ 1まで</param>
 	void SetLensDistortionStrength(float strength) { lensDistortionStrength_ = strength; };
 
 	/// <summary>
 	/// Vignetteのフラグを設定
 	/// </summary>
-	/// <param name="flag">フラグ</param>
+	/// <param name="flag"></param>
 	void SetIsVignetteActive(bool flag) { isVignetteActive_ = flag; };
 
 	/// <summary>
 	/// Vignetteの強度を設定
 	/// </summary>
-	/// <param name="intensity">強度</param>
+	/// <param name="intensity"></param>
 	void SetVignetteIntensity(float intensity) { vignetteIntensity_ = intensity; };
 
 private:
@@ -189,8 +189,8 @@ private:
 	/// <summary>
 	/// シェーダーをコンパイルする
 	/// </summary>
-	/// <param name="filePath">Compilerするshaderのファイルパス</param>
-	/// <param name="profile">Compilerで使用するProfile</param>
+	/// <param name="filePath"></param>
+	/// <param name="profile"></param>
 	/// <returns>実行用のバイナリ</returns>
 	ComPtr<IDxcBlob> CompileShader(
 		const std::wstring& filePath,
@@ -272,35 +272,35 @@ private:
 	/// <summary>
 	/// マルチパス用のリソースの作成
 	/// </summary>
-	/// <param name="width">幅</param>
-	/// <param name="height">高さ</param>
-	/// <param name="format">フォーマット</param>
-	/// <param name="clearColor">クリアカラー</param>
-	/// <returns>リソース</returns>
+	/// <param name="width"></param>
+	/// <param name="height"></param>
+	/// <param name="format"></param>
+	/// <param name="clearColor">/param>
+	/// <returns></returns>
 	ComPtr<ID3D12Resource> CreateTextureResource(uint32_t width, uint32_t height, DXGI_FORMAT format, const float* clearColor);
 
 	/// <summary>
 	/// 深度テクスチャの作成
 	/// </summary>
-	/// <param name="width">幅</param>
-	/// <param name="height">高さ</param>
-	/// <returns>リソース</returns>
+	/// <param name="width"></param>
+	/// <param name="height"></param>
+	/// <returns></returns>
 	ComPtr<ID3D12Resource> CreateDepthStencilTextureResource(int32_t width, int32_t height);
 
 	/// <summary>
 	/// レンダーターゲットビューの作成
 	/// </summary>
-	/// <param name="resource">リソース</param>
-	/// <param name="format">フォーマット</param>
-	/// <returns>RTVIndex</returns>
+	/// <param name="resource"></param>
+	/// <param name="format"></param>
+	/// <returns></returns>
 	uint32_t CreateRenderTargetView(const ComPtr<ID3D12Resource>& resource, DXGI_FORMAT format);
 
 	/// <summary>
 	/// シェーダーリソースビューの作成
 	/// </summary>
-	/// <param name="resource">リソース</param>
-	/// <param name="format">フォーマット</param>
-	/// <returns>SRVIndex</returns>
+	/// <param name="resource"></param>
+	/// <param name="format"></param>
+	/// <returns></returns>
 	uint32_t CreateShaderResourceView(const ComPtr<ID3D12Resource>& resource, DXGI_FORMAT format);
 
 	/// <summary>
@@ -311,19 +311,19 @@ private:
 	/// <summary>
 	/// CPUディスクリプタハンドルを取得
 	/// </summary>
-	/// <param name="descriptorHeap">ディスクリプタヒープ</param>
-	/// <param name="descriptorSize">ディスクリプタのサイズ</param>
-	/// <param name="index">ディスクリプタヒープの番号</param>
-	/// <returns>CPUディスクリプタハンドル</returns>
+	/// <param name="descriptorHeap"></param>
+	/// <param name="descriptorSize"></param>
+	/// <param name="index"></param>
+	/// <returns></returns>
 	D3D12_CPU_DESCRIPTOR_HANDLE GetCPUDescriptorHandle(ID3D12DescriptorHeap* descriptorHeap, const uint32_t descriptorSize, uint32_t index);
 
 	/// <summary>
 	/// GPUディスクリプタハンドルを取得
 	/// </summary>
-	/// <param name="descriptorHeap">ディスクリプタヒープ</param>
-	/// <param name="descriptorSize">ディスクリプタのサイズ</param>
-	/// <param name="index">ディスクリプタヒープの番号</param>
-	/// <returns>GPUディスクリプタハンドル</returns>
+	/// <param name="descriptorHeap"></param>
+	/// <param name="descriptorSize"></param>
+	/// <param name="index"></param>
+	/// <returns></returns>
 	D3D12_GPU_DESCRIPTOR_HANDLE GetGPUDescriptorHandle(ID3D12DescriptorHeap* descriptorHeap, const uint32_t descriptorSize, uint32_t index);
 
 private:
