@@ -142,5 +142,5 @@ private:
 	//ダッシュ時間
 	int behaviorDashTime_ = 10;
 	//クォータニオン
-	Quaternion quaternion1_{ 0.0f,0.0f,0.0f,1.0f };
+	Quaternion moveQuaternion{ 0.0f,0.0f,0.0f,1.0f };
 };
