@@ -65,8 +65,8 @@ void Weapon::Update() {
 	worldTransformCollision_.translation_ = Add(worldTransformCollision_.translation_, direction);
 
 	//ワールドトランスフォームの更新
-	worldTransform_.UpdateMatrix();
-	worldTransformCollision_.UpdateMatrix();
+	worldTransform_.UpdateMatrix(RotationType::Eular);
+	worldTransformCollision_.UpdateMatrix(RotationType::Eular);
 }
 
 void Weapon::Draw(const ViewProjection& viewProjection) {

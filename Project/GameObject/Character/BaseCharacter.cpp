@@ -8,7 +8,7 @@ void BaseCharacter::Initialize(const std::vector<Model*>& models){
 
 void BaseCharacter::Update() {
 	//ワールドトランスフォームの更新
-	worldTransform_.UpdateMatrix();
+	worldTransform_.UpdateMatrix(RotationType::Eular);
 }
 
 void BaseCharacter::Draw(const ViewProjection& viewProjection) {

@@ -141,6 +141,6 @@ private:
 	std::unique_ptr<Weapon> weapon_ = nullptr;
 	//ダッシュ時間
 	int behaviorDashTime_ = 10;
-	//回転行列
-	Matrix4x4 matRot_{};
+	//クォータニオン
+	Quaternion quaternion1_{ 0.0f,0.0f,0.0f,1.0f };
 };

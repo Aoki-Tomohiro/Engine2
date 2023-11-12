@@ -39,6 +39,12 @@ public:
 	void SetParent(const WorldTransform* parent) { worldTransform_.parent_ = parent; };
 
 	/// <summary>
+	/// 死亡フラグを取得
+	/// </summary>
+	/// <returns></returns>
+	bool GetIsDead() {return isDead_;};
+
+	/// <summary>
 	/// ワールド変換データを取得
 	/// </summary>
 	/// <returns></returns>

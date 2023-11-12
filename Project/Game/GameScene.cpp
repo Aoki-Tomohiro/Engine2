@@ -95,7 +95,9 @@ void GameScene::Update(GameManager* gameManager) {
 	if (player_->GetWeapon()->GetIsHit()) {
 		collisionManager_->SetColliderList(player_->GetWeapon());
 	}
-	collisionManager_->SetColliderList(enemy_.get());
+	if (enemy_->GetIsDead() == false) {
+		collisionManager_->SetColliderList(enemy_.get());
+	}
 	for (std::unique_ptr<Floor>& floor : floors_) {
 		collisionManager_->SetColliderList(floor.get());
 	}
@@ -124,7 +126,9 @@ void GameScene::Draw(GameManager* gameManager) {
 	player_->Draw(viewProjection_);
 
 	//敵の描画
-	enemy_->Draw(viewProjection_);
+	if (enemy_->GetIsDead() == false) {
+		enemy_->Draw(viewProjection_);
+	}
 
 	//天球の描画
 	skydome_->Draw(viewProjection_);

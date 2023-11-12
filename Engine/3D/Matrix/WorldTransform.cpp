@@ -16,9 +16,16 @@ void WorldTransform::TransferMatrix() {
 }
 
 
-void WorldTransform::UpdateMatrix() {
+void WorldTransform::UpdateMatrix(RotationType rotationType) {
 	//ワールド行列を計算
-	matWorld_ = MakeAffineMatrix(scale_, rotation_, translation_);
+	switch (rotationType) {
+	case RotationType::Eular:
+		matWorld_ = MakeAffineMatrix(scale_, rotation_, translation_);
+		break;
+	case RotationType::Quaternion:
+		matWorld_ = MakeAffineMatrix(scale_, quaternion_, translation_);
+		break;
+	}
 
 	//親がいれば行列を掛ける
 	if (parent_) {

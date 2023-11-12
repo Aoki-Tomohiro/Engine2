@@ -161,6 +161,15 @@ Matrix4x4 MakeRotateZMatrix(float radian);
 Matrix4x4 MakeAffineMatrix(const Vector3& scale, const Vector3& rotate, const Vector3& translate);
 
 /// <summary>
+/// アフィン行列の作成
+/// </summary>
+/// <param name="scale"></param>
+/// <param name="quaternion"></param>
+/// <param name="translation"></param>
+/// <returns></returns>
+Matrix4x4 MakeAffineMatrix(const Vector3& scale, const Quaternion& quaternion, const Vector3& translation);
+
+/// <summary>
 /// 透視投影行列の作成
 /// </summary>
 /// <param name="fovY"></param>
@@ -264,8 +273,6 @@ float EaseOutSine(float x);
 Matrix4x4 DirectionToDirection(const Vector3& from, const Vector3& to);
 
 Matrix4x4 MakeRotateAxisAngle(Vector3 axis, float angle);
-
-Matrix4x4 DirectionToDirection(const Vector3& from, const Vector3& to);
 
 Quaternion Multiply(const Quaternion& lhs, const Quaternion& rhs);
 

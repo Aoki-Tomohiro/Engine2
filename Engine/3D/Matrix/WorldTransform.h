@@ -7,6 +7,11 @@ struct ConstBuffDataWorldTransform {
 	Matrix4x4 world;
 };
 
+enum class RotationType {
+	Eular,
+	Quaternion,
+};
+
 /// <summary>
 /// ワールドトランスフォーム
 /// </summary>
@@ -25,7 +30,7 @@ struct WorldTransform {
 	/// <summary>
 	/// 行列の計算・転送
 	/// </summary>
-	void UpdateMatrix();
+	void UpdateMatrix(RotationType rotationType);
 
 	/// <summary>
 	/// 親を設定
@@ -46,6 +51,8 @@ struct WorldTransform {
 	Vector3 rotation_ = { 0.0f,0.0f,0.0f };
 	//座標
 	Vector3 translation_ = { 0.0f,0.0f,0.0f };
+	//クォータニオン
+	Quaternion quaternion_{ 0.0f,0.0f,0.0f,1.0f };
 	//ワールド行列
 	Matrix4x4 matWorld_{};
 	//親となるワールド変換へのポインタ

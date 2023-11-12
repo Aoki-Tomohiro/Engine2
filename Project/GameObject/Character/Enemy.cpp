@@ -38,16 +38,9 @@ void Enemy::Update() {
 	UpdateFloatingGimmick();
 	//行列の更新
 	BaseCharacter::Update();
-	worldTransformBody_.UpdateMatrix();
-	worldTransformL_arm_.UpdateMatrix();
-	worldTransformR_arm_.UpdateMatrix();
-
-	if (isDead_) {
-		ImGui::Begin("Enemy");
-		ImGui::Text("Dead");
-		ImGui::Checkbox("Reset", &isDead_);
-		ImGui::End();
-	}
+	worldTransformBody_.UpdateMatrix(RotationType::Eular);
+	worldTransformL_arm_.UpdateMatrix(RotationType::Eular);
+	worldTransformR_arm_.UpdateMatrix(RotationType::Eular);
 }
 
 void Enemy::Draw(const ViewProjection& viewProjection) {

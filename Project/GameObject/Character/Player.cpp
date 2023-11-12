@@ -85,32 +85,9 @@ void Player::Update() {
 		Restart();
 	}
 
-
 	//ワールドトランスフォームの更新
-	//worldTransform_.UpdateMatrix();
-	Matrix4x4 worldMatrix{};
-	worldMatrix.m[0][0] = worldTransform_.scale_.x * matRot_.m[0][0];
-	worldMatrix.m[0][1] = worldTransform_.scale_.x * matRot_.m[0][1];
-	worldMatrix.m[0][2] = worldTransform_.scale_.x * matRot_.m[0][2];
-	worldMatrix.m[0][3] = 0.0f;
-	worldMatrix.m[1][0] = worldTransform_.scale_.y * matRot_.m[1][0];
-	worldMatrix.m[1][1] = worldTransform_.scale_.y * matRot_.m[1][1];
-	worldMatrix.m[1][2] = worldTransform_.scale_.y * matRot_.m[1][2];
-	worldMatrix.m[1][3] = 0.0f;
-	worldMatrix.m[2][0] = worldTransform_.scale_.z * matRot_.m[2][0];
-	worldMatrix.m[2][1] = worldTransform_.scale_.z * matRot_.m[2][1];
-	worldMatrix.m[2][2] = worldTransform_.scale_.z * matRot_.m[2][2];
-	worldMatrix.m[2][3] = 0.0f;
-	worldMatrix.m[3][0] = worldTransform_.translation_.x;
-	worldMatrix.m[3][1] = worldTransform_.translation_.y;
-	worldMatrix.m[3][2] = worldTransform_.translation_.z;
-	worldMatrix.m[3][3] = 1.0f;
-	worldTransform_.matWorld_ = worldMatrix;
-	//親がいれば行列を掛ける
-	if (worldTransform_.parent_) {
-		worldTransform_.matWorld_ = Multiply(worldTransform_.matWorld_, worldTransform_.parent_->matWorld_);
-	}
-	worldTransform_.TransferMatrix();
+	worldTransform_.quaternion_ = Slerp(worldTransform_.quaternion_, quaternion1_, 0.4f);
+	worldTransform_.UpdateMatrix(RotationType::Quaternion);
 
 	//武器の更新
 	weapon_->Update();
@@ -121,23 +98,6 @@ void Player::Update() {
 
 	//グローバル変数の適応
 	Player::ApplyGlobalVariables();
-
-	ImGui::Begin("Player");
-	Matrix4x4 rotateXMatrix = MakeRotateXMatrix(worldTransform_.rotation_.x);
-	Matrix4x4 rotateYMatrix = MakeRotateYMatrix(worldTransform_.rotation_.y);
-	Matrix4x4 rotateZMatrix = MakeRotateZMatrix(worldTransform_.rotation_.z);
-	Matrix4x4 rotateMatrix = Multiply(rotateXMatrix, Multiply(rotateYMatrix, rotateZMatrix));
-	ImGui::Text("WorldTransform matRot_\n%f %f %f %f\n%f %f %f %f\n%f %f %f %f\n%f %f %f %f",
-		rotateMatrix.m[0][0], rotateMatrix.m[0][1], rotateMatrix.m[0][2],rotateMatrix.m[0][3],
-		rotateMatrix.m[1][0], rotateMatrix.m[1][1], rotateMatrix.m[1][2],rotateMatrix.m[1][3],
-		rotateMatrix.m[2][0], rotateMatrix.m[2][1], rotateMatrix.m[2][2],rotateMatrix.m[2][3],
-		rotateMatrix.m[3][0], rotateMatrix.m[3][1], rotateMatrix.m[3][2],rotateMatrix.m[3][3]);
-	ImGui::Text("DirectionToDirection matRot_\n%f %f %f %f\n%f %f %f %f\n%f %f %f %f\n%f %f %f %f",
-		matRot_.m[0][0], matRot_.m[0][1], matRot_.m[0][2], matRot_.m[0][3],
-		matRot_.m[1][0], matRot_.m[1][1], matRot_.m[1][2], matRot_.m[1][3],
-		matRot_.m[2][0], matRot_.m[2][1], matRot_.m[2][2], matRot_.m[2][3],
-		matRot_.m[3][0], matRot_.m[3][1], matRot_.m[3][2], matRot_.m[3][3]);
-	ImGui::End();
 }
 
 void Player::Draw(const ViewProjection& viewProjection) {
@@ -229,17 +189,16 @@ void Player::BehaviorRootUpdate() {
 			Matrix4x4 rotateMatrix = MakeRotateYMatrix(viewProjection_->rotation_.y);
 			move = TransformNormal(move, rotateMatrix);
 
-			//目標角度の算出
-			destinationAngleY_ = std::atan2(move.x, move.z);
-			matRot_ = DirectionToDirection(Normalize(worldTransform_.translation_), Normalize(move));
-
 			//移動
 			worldTransform_.translation_ = Add(worldTransform_.translation_, move);
+			
+			//回転
+			move = Normalize(move);
+			Vector3 cross = Normalize(Cross({ 0.0f,0.0f,1.0f }, move));
+			float dot = Dot({ 0.0f,0.0f,1.0f }, move);
+			quaternion1_ = MakeRotateAxisAngleQuaternion(cross, std::acos(dot));
 		}
 	}
-
-	//移動方向に見た目を合わせる
-	worldTransform_.rotation_.y = LerpShortAngle(worldTransform_.rotation_.y, destinationAngleY_, 0.2f);
 
 	//攻撃行動に変更
 	if (input_->GetJoystickState(joyState)) {
