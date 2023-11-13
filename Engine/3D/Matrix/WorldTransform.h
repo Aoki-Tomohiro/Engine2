@@ -8,7 +8,7 @@ struct ConstBuffDataWorldTransform {
 };
 
 enum class RotationType {
-	Eular,
+	Euler,
 	Quaternion,
 };
 

@@ -38,9 +38,9 @@ void Enemy::Update() {
 	UpdateFloatingGimmick();
 	//行列の更新
 	BaseCharacter::Update();
-	worldTransformBody_.UpdateMatrix(RotationType::Eular);
-	worldTransformL_arm_.UpdateMatrix(RotationType::Eular);
-	worldTransformR_arm_.UpdateMatrix(RotationType::Eular);
+	worldTransformBody_.UpdateMatrix(RotationType::Euler);
+	worldTransformL_arm_.UpdateMatrix(RotationType::Euler);
+	worldTransformR_arm_.UpdateMatrix(RotationType::Euler);
 }
 
 void Enemy::Draw(const ViewProjection& viewProjection) {

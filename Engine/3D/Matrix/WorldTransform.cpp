@@ -19,7 +19,7 @@ void WorldTransform::TransferMatrix() {
 void WorldTransform::UpdateMatrix(RotationType rotationType) {
 	//ワールド行列を計算
 	switch (rotationType) {
-	case RotationType::Eular:
+	case RotationType::Euler:
 		matWorld_ = MakeAffineMatrix(scale_, rotation_, translation_);
 		break;
 	case RotationType::Quaternion:

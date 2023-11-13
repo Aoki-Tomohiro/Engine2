@@ -31,7 +31,7 @@ void Floor::Update() {
 	}
 
 	//ワールドトランスフォームの更新
-	worldTransform_.UpdateMatrix(RotationType::Eular);
+	worldTransform_.UpdateMatrix(RotationType::Euler);
 }
 
 void Floor::Draw(const ViewProjection& viewProjection) {

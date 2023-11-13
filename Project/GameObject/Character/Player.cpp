@@ -86,7 +86,7 @@ void Player::Update() {
 	}
 
 	//ワールドトランスフォームの更新
-	worldTransform_.quaternion_ = Slerp(worldTransform_.quaternion_, moveQuaternion, 0.4f);
+	worldTransform_.quaternion_ = Slerp(worldTransform_.quaternion_, moveQuaternion_, 0.4f);
 	worldTransform_.UpdateMatrix(RotationType::Quaternion);
 
 	//武器の更新
@@ -196,7 +196,7 @@ void Player::BehaviorRootUpdate() {
 			move = Normalize(move);
 			Vector3 cross = Normalize(Cross({ 0.0f,0.0f,1.0f }, move));
 			float dot = Dot({ 0.0f,0.0f,1.0f }, move);
-			moveQuaternion = MakeRotateAxisAngleQuaternion(cross, std::acos(dot));
+			moveQuaternion_ = MakeRotateAxisAngleQuaternion(cross, std::acos(dot));
 		}
 	}
 
