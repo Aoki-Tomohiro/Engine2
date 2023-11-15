@@ -1,7 +1,9 @@
 #pragma once
+#include "Engine/Components/Input.h"
 #include "Engine/3D/Model/Model.h"
 #include "Engine/3D/Matrix/WorldTransform.h"
 #include "Engine/Utility/CollisionManager/Collider.h"
+#include <array>
 
 /// <summary>
 /// 武器クラス
@@ -35,7 +37,7 @@ public:
 	/// 攻撃フラグ開始
 	/// </summary>
 	/// <param name="flag"></param>
-	void Attack();
+	void SetIsAttack();
 
 	/// <summary>
 	/// 攻撃フラグを取得
@@ -73,6 +75,7 @@ private:
 	void AttackInitialize();
 
 private:
+	Input* input_ = nullptr;
 	//モデル
 	Model* model_ = nullptr;
 	//ワールドトランスフォーム

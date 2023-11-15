@@ -16,6 +16,7 @@ public:
 		kRoot,//通常状態
 		kDash,//ダッシュ状態
 		kAttack,//攻撃状態
+		kJump,//ジャンプ中
 	};
 
 	//ダッシュ用ワーク
@@ -24,6 +25,39 @@ public:
 		int dashParameter_ = 0;
 		uint32_t coolTime = 0;
 	};
+
+	//攻撃用ワーク
+	struct WorkAttack {
+		//攻撃ギミックの媒介変数
+		uint32_t attackParameter = 0;
+		int32_t comboIndex = 0;
+		int32_t inComboPhase = 0;
+		bool comboNext = false;
+	};
+
+	//攻撃用定数
+	struct ConstAttack {
+		//振りかぶりの時間
+		uint32_t anticipationTime;
+		//溜めの時間
+		uint32_t chargeTime;
+		//攻撃振りの時間
+		uint32_t swingTime;
+		//硬直時間
+		uint32_t recoveryTime;
+		//振りかぶりの移動速さ
+		float anticipationSpeed;
+		//溜めの移動速さ
+		float chargeSpeed;
+		//攻撃振りの移動速さ
+		float swingSpeed;
+	};
+
+	//コンボの数
+	static const int ComboNum = 3;
+
+	//コンボ定数表
+	static const std::array<ConstAttack, ComboNum> kConstAttacks_;
 
 	/// <summary>
 	/// 初期化
@@ -115,6 +149,16 @@ private:
 	void BehaviorAttackUpdate();
 
 	/// <summary>
+	/// ジャンプ行動初期化
+	/// </summary>
+	void BehaviorJumpInitialize();
+
+	/// <summary>
+	/// ジャンプ行動更新
+	/// </summary>
+	void BehaviorJumpUpdate();
+
+	/// <summary>
 	/// グローバル変数の適応
 	/// </summary>
 	void ApplyGlobalVariables();
@@ -143,4 +187,8 @@ private:
 	int behaviorDashTime_ = 10;
 	//クォータニオン
 	Quaternion moveQuaternion_{ 0.0f,0.0f,0.0f,1.0f };
+	//速度
+	Vector3 velocity_{};
+	//攻撃用ワーク
+	WorkAttack workAttack_{};
 };

@@ -6,6 +6,7 @@ void Weapon::Initialize(Model* model) {
 	//モデルの初期化
 	assert(model);
 	model_ = model;
+	input_ = Input::GetInstance();
 	//ワールドトランスフォームの初期化
 	worldTransform_.Initialize();
 	worldTransform_.translation_.y = 0.8f;
@@ -24,39 +25,39 @@ void Weapon::Initialize(Model* model) {
 
 void Weapon::Update() {
 
-	//攻撃中の時アニメーションタイマーを進める
-	if (isAttack_) {
-		animationTimer_++;
+	////攻撃中の時アニメーションタイマーを進める
+	//if (isAttack_) {
+	//	animationTimer_++;
 
-		//振りかぶりアニメーション
-		if (animationCount_ == 0) {
-			if (animationTimer_ == 30) {
-				animationCount_++;
-				animationTimer_ = 0;
-			}
-			worldTransform_.rotation_.x -= 0.1f;
-		}
+	//	//振りかぶりアニメーション
+	//	if (animationCount_ == 0) {
+	//		if (animationTimer_ == 30) {
+	//			animationCount_++;
+	//			animationTimer_ = 0;
+	//		}
+	//		worldTransform_.rotation_.x -= 0.1f;
+	//	}
 
-		//攻撃アニメーション
-		if (animationCount_ == 1) {
-			if (animationTimer_ == 15) {
-				animationCount_++;
-				animationTimer_ = 0;
-			}
-			worldTransform_.rotation_.x += 0.2f;
-			isHit_ = true;
-		}
+	//	//攻撃アニメーション
+	//	if (animationCount_ == 1) {
+	//		if (animationTimer_ == 15) {
+	//			animationCount_++;
+	//			animationTimer_ = 0;
+	//		}
+	//		worldTransform_.rotation_.x += 0.2f;
+	//		isHit_ = true;
+	//	}
 
-		//硬直アニメーション
-		if (animationCount_ == 2) {
-			if (animationTimer_ == 30) {
-				animationCount_++;
-				animationTimer_ = 0;
-				isAttack_ = false;
-				isHit_ = false;
-			}
-		}
-	}
+	//	//硬直アニメーション
+	//	if (animationCount_ == 2) {
+	//		if (animationTimer_ == 30) {
+	//			animationCount_++;
+	//			animationTimer_ = 0;
+	//			isAttack_ = false;
+	//			isHit_ = false;
+	//		}
+	//	}
+	//}
 
 	//当たり判定の位置を決める
 	Vector3 direction{ 0.0f,0.0f,4.0f };
@@ -86,7 +87,7 @@ Vector3 Weapon::GetWorldPosition() {
 	return pos;
 }
 
-void Weapon::Attack(){
+void Weapon::SetIsAttack(){
 	if (isAttack_ == false) {
 		Weapon::AttackInitialize();
 		isAttack_ = true;
